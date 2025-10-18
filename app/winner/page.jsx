@@ -1,9 +1,9 @@
 "use client";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 
-export default function WinnerPage() {
+function WinnerContent() {
   const searchParams = useSearchParams();
   const twitter = searchParams.get("twitter");
   const discord = searchParams.get("discord");
@@ -150,5 +150,13 @@ export default function WinnerPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function WinnerPage() {
+  return (
+    <Suspense fallback={<div className="text-white text-center mt-10">Loading...</div>}>
+      <WinnerContent />
+    </Suspense>
   );
 }
